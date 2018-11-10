@@ -27,12 +27,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".pages.home.MainActivity" />
         </activity>
-        <activity android:name=".pages.detailstep.DetailStepActivity"
+        <activity
+            android:name=".pages.detailstep.DetailStepActivity"
             android:parentActivityName=".pages.detail.DetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".pages.detail.DetailActivity" />
         </activity>
+
+        <receiver android:name=".RecipeIngredientsWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/recipe_ingredients_widget_info" />
+        </receiver>
     </application>
 
 </manifest>
