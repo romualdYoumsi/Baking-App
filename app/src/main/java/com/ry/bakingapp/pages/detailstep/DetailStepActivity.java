@@ -25,6 +25,9 @@ public class DetailStepActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+//        update the title bar
+        setTitle(mRecipeCard.getSteps().get(position).getShortDescription());
+
         fragmentTransaction.replace(R.id.master_frame, RecipeStepDetailFragment.newInstance(mRecipeCard.getSteps().get(position)));
         fragmentTransaction.commit();
     }
