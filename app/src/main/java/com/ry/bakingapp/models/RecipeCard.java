@@ -20,6 +20,11 @@ public class RecipeCard implements Parcelable {
     public RecipeCard() {
     }
 
+    public RecipeCard(long id, String name, List<RecipeIngredient> ingredients) {
+        this.name = name;
+        this.ingredients = ingredients;
+    }
+
     public Long getId() {
         return id;
     }

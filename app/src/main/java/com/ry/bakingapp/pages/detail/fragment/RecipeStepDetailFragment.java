@@ -43,7 +43,6 @@ public class RecipeStepDetailFragment extends Fragment implements RecipeStepAdap
 
     private static RecipeStep mRecipeStep;
 
-    private SimpleExoPlayer player;
     private TextView descriptionTV;
 
     private SimpleExoPlayer mExoPlayer;
@@ -141,6 +140,18 @@ public class RecipeStepDetailFragment extends Fragment implements RecipeStepAdap
             mExoPlayer.setPlayWhenReady(true);
         }
     }
+    private void pausePlayer(){
+        if (mExoPlayer != null){
+            mExoPlayer.setPlayWhenReady(false);
+            mExoPlayer.getPlaybackState();
+        }
+    }
+    private void startPlayer(){
+        if (mExoPlayer != null){
+            mExoPlayer.setPlayWhenReady(true);
+            mExoPlayer.getPlaybackState();
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -158,9 +169,27 @@ public class RecipeStepDetailFragment extends Fragment implements RecipeStepAdap
         initializeMediaSession();
 
         initDescription();
-        initRecipeVideo();
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+//        initialise the step video
+        if ((Util.SDK_INT <= 23 || mExoPlayer == null)) {
+            initRecipeVideo();
+        } else {
+            startPlayer();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        pausePlayer();
+
     }
 
     @Override

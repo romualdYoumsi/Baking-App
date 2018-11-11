@@ -63,12 +63,13 @@ public class MainActivity extends AppCompatActivity implements FindRecipeCardLis
 
     @Override
     public void onFindRecipeCardComplete(List<RecipeCard> recipeCards) {
-        Log.e(TAG, "onFindRecipeCardComplete: size="+recipeCards.size()+
-                " 0name="+recipeCards.get(0).getName());
         if (recipeCards == null) {
             Toast.makeText(MainActivity.this, "Failed to get data. Please check your internet connection.", Toast.LENGTH_LONG).show();
             return;
         }
+
+        Log.e(TAG, "onFindRecipeCardComplete: size="+recipeCards.size()+
+                " 0name="+recipeCards.get(0).getName());
         if (recipeCards.size() == 0) {
             Toast.makeText(MainActivity.this, "No data found, please try again later.", Toast.LENGTH_LONG).show();
             return;
